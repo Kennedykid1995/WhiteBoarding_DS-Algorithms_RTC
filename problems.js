@@ -108,3 +108,22 @@ console.log(balancedBrackets('[]{}()'));
 // [ 5 ] 5 ')' 1 'arr, bracePosition, str[i], arr.length -------'
  
 // [] 5 ')' 0 'arr, bracePosition, str[i], arr.length'
+
+//big o notation 
+//compare the same function different implementation.
+
+function addupTo(n){
+        //depending on how much n is worth. also the = counts.
+        // = += ++, some amplify if n is big. 
+        //n = 20 there are 20+ operations
+    let total = 0; 
+    for(let i = 0; i <= n; i++){
+        total += i;
+    }
+    return total; 
+}
+    
+function addupTo(n){
+        // 3 operations * + /
+    return n * (n + 1) / 2; 
+}
