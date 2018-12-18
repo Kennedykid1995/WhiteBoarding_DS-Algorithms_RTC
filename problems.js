@@ -40,3 +40,71 @@ function maxChars(str){
     }
     return max; 
 }
+//in balancedBrackets we want to return true or false if the string passed in has balanced brackets
+//meaning "{" will have its corresponding "}" and the same for the [] and (). 
+//we will have to make an object that holds all of the brackets in their full formation.
+//another object that is an empty arr to store the brackets in just incase there are other 
+//characters placed in the string. 
+//and the last object will help with avoid all other characters, by using the brackets object to find 
+//all of the brackets with in the string. 
+//inorder to complete this function we will have to loop through the string and find all of the indexes of the 
+//brackets within the string.  
+//also the distance between each of the corresponding brackets will have to be put into consideration
+//when dealing with whether the string put in would be true or false when considering if they are
+//corresponding brackets.
+function balancedBrackets(str){
+    //define the objects needed for this function
+    let brackets = "{}[]()";
+    let arr = []; 
+    //before defining the object that avoids characters that are not brackets. 
+    //loop through to recieve all of the characters in str.
+    for(let i = 0; i < str.length; i++){
+        //create a object that find the position of each bracket.
+        let position = brackets.indexOf(str[i]); 
+        //gets rid of all other characters that are not brackets.
+
+        console.log(arr, position,str[i], arr.length, "arr, position, str[i], arr.length -------")
+        //the position must be divided equally so that they are equal distance from each other.
+        if(position % 2 === 0){
+            arr.push(position + 1); 
+        }else{
+            //if the item in the arr has an index not equal to the position then it is false.
+            if(arr.pop() !== position){
+                return false;
+            }
+        }
+        console.log(arr, position,str[i], arr.length, "arr, position, str[i], arr.length")
+    }
+    return arr.length === 0; 
+};
+
+console.log(balancedBrackets('[]{}()'));
+
+//arr is always empty in --------
+//arr is filled after the middle content.
+//position = index
+//str[i] = bracket that is currently being searched for
+
+// [] 0 '[' 0 'arr, bracePosition, str[i], arr.length -------'
+ 
+// [ 1 ] 0 '[' 1 'arr, bracePosition, str[i], arr.length'
+ 
+// [ 1 ] 1 ']' 1 'arr, bracePosition, str[i], arr.length -------'
+ 
+// [] 1 ']' 0 'arr, bracePosition, str[i], arr.length' 
+ 
+// [] 2 '{' 0 'arr, bracePosition, str[i], arr.length -------' 
+ 
+// [ 3 ] 2 '{' 1 'arr, bracePosition, str[i], arr.length' 
+ 
+// [ 3 ] 3 '}' 1 'arr, bracePosition, str[i], arr.length -------' 
+ 
+// [] 3 '}' 0 'arr, bracePosition, str[i], arr.length'
+ 
+// [] 4 '(' 0 'arr, bracePosition, str[i], arr.length -------'
+ 
+// [ 5 ] 4 '(' 1 'arr, bracePosition, str[i], arr.length'
+ 
+// [ 5 ] 5 ')' 1 'arr, bracePosition, str[i], arr.length -------'
+ 
+// [] 5 ')' 0 'arr, bracePosition, str[i], arr.length'
