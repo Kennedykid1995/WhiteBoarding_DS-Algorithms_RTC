@@ -372,3 +372,108 @@ function double(arr){
            }
            return true; 
        }
+
+//two pointers pattern 
+       //sumZero
+       //O(n^2)
+       function sumZero(arr){
+           for(let i = 0; i < arr.length; i++){
+               for(let j = i+1; j < arr.length; j++){
+                   if(arr[i] + arr[j] === 0){
+                       return [arr[i], arr[j]];
+                   }
+               }
+           }
+       }
+
+       //refactored
+       //O(n)
+       function sumZero(arr){
+           //start on the left and right side to figure out the problem. 
+           let left = 0; 
+           let right = arr.length - 1;
+           while(left < right){
+               let sum = arr[left] + arr[right];
+               if(sum === 0){
+                   return [arr[left], arr[right]];
+               }else if(sum > 0){
+                   right--;
+               }else{
+                   left++;
+               }
+           }
+       }
+       //countUniqueValues
+       function countUniqueValues(arr){
+           let i = 0; 
+           if(arr.length === 0) return 0; 
+           for(let j = 1; j < arr.length; j++){
+               //compare index of i and j
+               if(arr[i] !== arr[j]){
+                   i++;
+                   arr[i] = arr[j]; 
+               } 
+           }
+           return i + 1; 
+       }
+
+//Sliding window pattern
+       //set of data that is continuious
+       //a window can be a single var which can be eith an array or number
+       //from one position to another.
+       //depending on the certain condition the window either increases or closes
+       //and a new window is created
+       //very useful for keeping track of a subset of data in an array/string etc.
+
+       //maxSubarraySum
+       //not a great solution
+       //bad runtime especially if you have a large array.
+       //since you are going from each index up to the spaces of the num. 
+
+       function maxSubarraySum(arr, num){
+           if(num > arr.length){
+               return null;
+           }
+           let max = -Infinity; //if an array only had negitive numbers.
+           for(let i = 0; i < arr.length - num + 1; i++){
+               temp = 0; //store our sum each time through
+               for(let j = 0; j < num; j++){
+                   temp += arr[i + j];
+               }    //
+               if(temp > max){
+                   max = temp;
+               }
+           }
+           return max; 
+       }
+                    //adding from i to what ever the num is
+       maxSubarraySum([2,6,9,2,1,8,5,6,3], 3)
+                    // i+6+9 --3 items.
+                        //i+9+2
+
+        //sliding window approach
+        //O(n)
+        function maxSubarraySum(arr, num){
+            let maxSum = 0; 
+            let tempSum = 0; 
+            if(arr.length < num) return null; 
+            for(let i = 0; i < num; i++){
+                maxSum += arr[i];
+            }
+            tempSum = maxSum; 
+            for(let i = num; i < arr.length; i++){
+                tempSum = tempSum - arr[i - num] + arr[i];
+                maxSum = Math.max(maxSum, tempSum);
+            }
+            return maxSum; 
+        }             //creating a sum that goes from 2 to 9
+                    //then for 6 to 4 it subtracts 2 and adds 4
+                    //allows us to loop over the array once
+                    //so we dont have to contiuously loop through it.
+                    //until it finds the largest sum.
+        maxSubarraySum([2,6,9,4,3,4,6], 3); 
+
+//divide and conquer
+        //dividing a data set into smaller chunks and then repeating a process
+        //with a subset of data.
+        //this pattern can tremendously decrease time complexity.
