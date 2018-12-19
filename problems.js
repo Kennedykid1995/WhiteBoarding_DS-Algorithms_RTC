@@ -593,6 +593,32 @@ function double(arr){
         factorial(5); 
             //return 5 * 4, 20 * 3, 60 * 2, 120 * 1 //ends at 1. 
 
-//where things go wrong. 
-        //no base case
-        //forgetting to return
+        function collectOdds(arr){
+            let result = [];  //call outside of the function within the function
+            //shrinking the array to collect all of the odds. 
+            function helper(helperInput){
+                if(helperInput.length === 0){
+                    return;
+                }
+                if(helperInput[0] % 2 !== 0){
+                    result.push(helperInput[0])
+                }
+                helper(helperInput.slice(1))
+            }
+            helper(arr);
+            return result; 
+        }
+        //pure recursion way
+
+        function collectOddValues(arr){
+            let newArr = []; 
+
+            if(arr.length === 0){
+                return newArr;
+            }
+            if(arr[0] % 2 !== 0){
+                newArr.push(arr[0]);
+            }
+            newArr = newArr.concat(collectOddValues(arr.slice(1)));
+            return newArr;
+        }
