@@ -240,4 +240,62 @@ function double(arr){
     //4. 
     //5.
 
+//come up with concrete examples
+    //start with simple examples --with the input and the output
+    //progress to more complex examples
+    //explore examples with empty inputs
+    //explore examples with invalid inputs
+
+    //write a function which takes in a string and returns counts 
+    //of each character in the string.
+
+    //simple examples
+        // function charCount("aaaaa"); //{a:4}
+
+        // charCount("my dog is a cat")
+        //do we want to account for spaces, numbers, casing, etc...
+
+        // charCount("");
+
+//break it down
+    //explicitly write out the steps you need to take.
+    //same problem as before
     
+    function charCount(str){
+        //make object to return at the end
+        let newArr = {};
+        //loop over str, for each character..
+        for(let i = 0; i <str.length; i++){
+            let char = str[i].toLowerCase(); 
+            //if char is a num/letter key in object, add one to count
+            if(newArr[char]){
+                newArr[char]++;
+            }else{
+            //if the char is a num/letter not in our object set to one.
+                newArr[char] = 1; 
+            }
+        }
+        //if character is something else dont do anything
+        //return object at end
+        return newArr; 
+    }
+
+//solve and simplify
+    //find the core difficulty in what you're trying to do
+    //temporarily ignore that difficulty
+    //write a simplified solution
+    //then incorporate that difficulty back in.
+
+//look back and refactor
+    //ask yourself these questions
+        //can you check the result
+        //can you derive the result differently
+        //can you understand it at a glance
+        //can you use the result of method for some other problem/
+        //can you improve the performace of your solution
+        //can you think of other ways to refactor
+        //how have other people solved this problem
+        
+
+
+
