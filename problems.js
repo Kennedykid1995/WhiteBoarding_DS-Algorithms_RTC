@@ -477,3 +477,69 @@ function double(arr){
         //dividing a data set into smaller chunks and then repeating a process
         //with a subset of data.
         //this pattern can tremendously decrease time complexity.
+
+        function search(arr, val){
+            let min = 0; 
+            let max = arr.length - 1; 
+            while(min <= max){
+                let middle = Math.floor((min + max) / 2);
+                let currentElement = arr[middle];
+                if(currentElement < val){
+                    min = middle + 1;
+                }
+                else if(currentElement > val){
+                    max = middle - 1;
+                }
+                else{
+                    return middle; 
+                }
+            }
+            return -1; 
+        }
+
+        //three problems using patterns
+        //frequency counter
+        function sameFrequency(num1, num2){
+            let strNum1 = num1.toString();
+            let strNum2 = num2.toString();
+            if(strNum1.length !== strNum2.length) return false;
+
+            let countNum1 = {};
+            let countNum2 = {};
+             
+            for(let i = 0; i < strNum1.length; i++){
+                countNum1[strNum1[i]] = (countNum1[strNum1[i]] || 0) + 1;
+            }
+            for(let j = 0; j < strNum1.length; j++){
+                countNum2[strNum2[j]] = (countNum2[strNum2[j]] || 0) + 1;
+            }
+            for(let key in countNum1){
+                if(countNum1[key] !== countNum2[key]) return false;
+            }
+            return true;
+        }
+        //frequency counter
+        function areThereDuplicates(){
+            let collection = {}; 
+            for(let val in arguments){
+                collection[arguments[val]] = [collection[arguments[val]] || 0]+ 1; 
+            }
+            for(let key in collection){
+                if(collection[key] > 1)return true; 
+            }
+            return false;
+        }
+        //window
+        function avrgPair(arr, num){
+            let start = 0; 
+            let end = arr.length - 1; 
+            while(start<end){
+                let avg = (arr[start] + arr[end]) / 2;
+                if(avg === num)start++;
+                else end--;
+            }
+            return false; 
+        }
+
+
+//recursion 
