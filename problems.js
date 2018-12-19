@@ -265,14 +265,20 @@ function double(arr){
         //make object to return at the end
         let newArr = {};
         //loop over str, for each character..
-        for(let i = 0; i <str.length; i++){
-            let char = str[i].toLowerCase(); 
-            //if char is a num/letter key in object, add one to count
-            if(newArr[char]){
-                newArr[char]++;
-            }else{
-            //if the char is a num/letter not in our object set to one.
-                newArr[char] = 1; 
+        for(let char of str){
+            char = char.toLowerCase();
+            //use regular expression to get only letters and numbers 
+            if(/[a-z0-9]/.test(char)){
+                //regular expressions performance vary. instead...
+                //if char is a num/letter key in object, add one to count
+                if(newArr[char]){
+                    newArr[char]++;
+                }else{
+                //if the char is a num/letter not in our object set to one.
+                    newArr[char] = 1; 
+                };
+                //instead of above
+                //newArr[char] = ++newArr[char] || 1
             }
         }
         //if character is something else dont do anything
