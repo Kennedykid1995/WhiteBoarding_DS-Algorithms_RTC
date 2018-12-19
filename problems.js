@@ -302,6 +302,73 @@ function double(arr){
         //can you think of other ways to refactor
         //how have other people solved this problem
         
+//Patterns
+    //Frequency Counter
+        //this pattern uses objects or sets to collect values frequencies of values.
+        //often can avoid nested loops.
+       function same(arr1, arr2){
+           if(arr1.length !== arr2.length){
+               return false;
+           }
+           for(let i = 0; i < arr1.length; i++){
+               let correctIndex = arr2.indexOf(arr1[i] ** 2)
+               if(correctIndex === -1){
+                   return false;
+               }
+               arr2.splice(correctIndex, 1);
+           }
+           return true;
+       } 
 
+       same([1,2,3], [9, 1, 4]) === true //1 * 1 = 1, 2 * 2 = 4, 3 * 3 = 9. 
 
+       //two loops is better than two nested loops. 
+       //refactored.
+       //O(n)
+       function same(arr1, arr2){
+           if(arr1.length !== arr2.length){
+               return false;
+           }
+           let frequencyCounter1 = {}; 
+           let frequencyCounter2 = {}; 
+           for(let val of arr1){
+               frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1; 
+           }
+           for (let val of arr2){
+               frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1; 
+           }
+           for(let key in frequencyCounter1){
+               if(!(key ** 2 in frequencyCounter2)){
+                   return false
+               }
+               if(frequencyCounter2[key ** 2] !== frequencyCounter1[key]){
+                   return false
+               }
+           }
+           return true; 
+       }
 
+//anagram problem
+       //two strings two items, and see if they are the same
+       //try and use frequency approach. 
+       function anagram(first, second){
+           if(first.length !== second.length){
+               return false;
+           }
+           const lookup = {}; 
+           for(let i = 0; i < first.length; i++){
+               let letter = first[i]; 
+               //if letter exists, increment, otherwise set to 1
+               lookup[letter] ? lookup[letter] += 1: lookup[letter] = 1; 
+           }
+           for(let i = 0; i < second.length; i++){
+               let letter = second[i]; 
+               //can't find letter or letter is a zero then its not and anagram.
+               if(!lookup[letter]){
+                   return false;
+               }else{
+                   lookup[letter] -= 1; 
+               }
+           }
+           return true; 
+       }
