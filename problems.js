@@ -543,3 +543,56 @@ function double(arr){
 
 
 //recursion 
+        //non recursive is called iterative
+        //a process(a function in our case) that calls itself.
+        //they call themselves. 
+
+        //invoke the same functionwith a different input until you reach your base case
+        //the base case, the condition when the recursion ends.
+        //two essential parts
+        //base case and different input 
+
+        //basic resursive solution.
+        function countDown(){
+            if(num <= 0){ //base case
+                console.log("All Done!");
+                return; //ends the function
+            }
+            console.log(num);//this section functions if the base case hasn't been hit.
+            num--;
+            countDown(num); 
+        }
+    countDown(5); 
+
+        function sumRange(num){
+            if(num === 1) return 1; 
+            return num + sumRange(num - 1)
+        }
+
+    sumRange(3); 
+        return 3 + sumRange(2); //3     3+3=6; 
+                return 2 + sumRange(1); //true 2+1
+                            return 1 //^^^
+
+//writing factorial recursion
+
+        //5 * 4 * 3 * 2 * 1
+        //iterative solution
+        function factorial(num){
+            let total = 1;
+            for(let i = num; i > 1; i--){
+                total *= i
+            }
+            return total
+        }
+        //recursive solution
+        function factorial(num){
+            if(num === 1) return 1;
+            return num * factorial(num-1);
+        }
+        factorial(5); 
+            //return 5 * 4, 20 * 3, 60 * 2, 120 * 1 //ends at 1. 
+
+//where things go wrong. 
+        //no base case
+        //forgetting to return
