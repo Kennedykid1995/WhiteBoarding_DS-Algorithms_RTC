@@ -62,7 +62,6 @@ function balancedBrackets(str){
         //create a object that find the position of each bracket.
         let position = brackets.indexOf(str[i]); 
         //gets rid of all other characters that are not brackets.
-
         console.log(arr, position,str[i], arr.length, "arr, position, str[i], arr.length -------")
         //the position must be divided equally so that they are equal distance from each other.
         if(position % 2 === 0){
@@ -141,9 +140,9 @@ function countUpandDown(n){
     for(let i = 0; i < n; i++){         //0(n)
         console.log(i)
     }
-        for(let j = n-1; j >=0; j--){   //0(n)
-            console.log(j)
-        }
+    for(let j = n-1; j >=0; j--){       //0(n)
+        console.log(j)
+    }
         console.log("back down.")       //0(n)
     }
 
@@ -154,3 +153,91 @@ function printAllPairs(n){
         }
     }
 }
+
+
+//simplifying big O expressions. 
+//constants dont matter; 
+    //O(n + 10) = O(n)
+    //O(1000n + 50) = O(n)
+    //O(n^2 + 5n + 8) = O(n^2)
+
+//Arithmetic operations are constant
+//Variable assingment is constant
+//Accessing elements in an array(by index) or object(by key) is constant
+//in a loop the complexity is the length of the loop times the complexity of whatever
+//happens inside of the loop.
+
+//space complexity
+//most booleans numbers underfined null are constant space
+//strings require O(n)space 
+
+function sum(arr){
+    //O(1) constant space. 
+    let total = 0; 
+    for(let i = 0; i < arr.length; i++){
+        total += arr[i];
+    }
+    return total; 
+}
+
+function double(arr){
+    //O(n)
+    let newArr = []; 
+    for(let i = 0; i < arr.length; i++){
+        newArr.push(2*arr[i]);      //newArr gets long and long depending on the input.
+    }
+    return newArr; 
+}
+
+//logarithms
+
+//what is log?
+//O(log n) is great. 
+
+
+//Built in data structures
+
+//objects - when you dont need order,
+// insertion O(1) removal O(1) searching O(n) access O(1)...
+
+//Arrays - when you need order, 
+//insertion it depends, removal it depends, access O(1), searching O(n).
+
+//built in methods
+//push pop constant time
+//shift un shift O(n)
+//concat O(n)
+//slice splice O(n)
+//sort O(n *logn)
+//foreach/map/filter/reduce/etc O(n)
+
+
+//Problem solving patterns/ Algorithms 
+
+//Devise a plan for solving problems
+//Master common problem solving patterns
+
+//understand the problem
+//explore concrete examples
+//break it down
+//solve/simplify
+//look back and refactor
+
+//understand the problem
+    //1. can i restate the problem in my own words
+    //2. what are the inputs that go into the problem
+    //3. what are the outputs, what should be come from the solution
+    //to the problem
+    //4. Can the outputs be determined from the inputs? in other words
+    //do i have enough information to solve the problem? you may not
+    //be able to answer this question until you set about solving the problem.
+    //5. How should I label the important pieces of data that are a part of the problem
+
+//problem write a function which returns the sum of two numbers.
+    //1. implement addition
+    //2. ints? floats? what about string for large numbers? 
+    //3. int, float , strings
+    //4. 
+    //5.
+
+    
