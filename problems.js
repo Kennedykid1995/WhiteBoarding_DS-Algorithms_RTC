@@ -116,6 +116,8 @@ function addupTo(n){
         //depending on how much n is worth. also the = counts.
         // = += ++, some amplify if n is big. 
         //n = 20 there are 20+ operations
+        //as n grows the runtime grows.
+        //O(n)
     let total = 0; 
     for(let i = 0; i <= n; i++){
         total += i;
@@ -124,6 +126,31 @@ function addupTo(n){
 }
     
 function addupTo(n){
+        //as n grows it is not reflected in the runtime.
         // 3 operations * + /
+        //faster, better implementation.
+        //constant overall
+        //O(1)
     return n * (n + 1) / 2; 
+}
+
+// Big O runtime of an algorithm grows as the inputs grow
+
+function countUpandDown(n){
+    console.log("going up")
+    for(let i = 0; i < n; i++){         //0(n)
+        console.log(i)
+    }
+        for(let j = n-1; j >=0; j--){   //0(n)
+            console.log(j)
+        }
+        console.log("back down.")       //0(n)
+    }
+
+function printAllPairs(n){
+    for(let i = 0; i < n; i++){         //0(n) with in 0(n)
+        for(let j = 0; j < n; j++){     //0(n^2) O of n squared. 
+            console.log(i, j)
+        }
+    }
 }
