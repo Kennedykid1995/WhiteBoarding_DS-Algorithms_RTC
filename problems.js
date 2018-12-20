@@ -622,3 +622,58 @@ function double(arr){
             newArr = newArr.concat(collectOddValues(arr.slice(1)));
             return newArr;
         }
+
+        function power(base, exp){
+            //power(2,0) = 1
+            //power(2, 2) = 4
+            if(exp === 0) return 1; //base case
+            return base * power(base, exp - 1); 
+            //the function will call itself
+            //base exp
+            // 3    4//begins
+            // 3    3
+            // 3    2
+            // 3    1//ends
+          }
+          console.log(power(9, 2))
+
+          function factorial(x){
+            //need the create the base cases
+            //when or if the function gets to 0 or 1
+            //and then call the function so that it loops 
+            //through until it meets the base case.
+            //5*4*3*2*1 = 120
+            if(x < 0)return 0; 
+            if(x <= 1) return 1;
+            return x * factorial(x - 1); 
+          }
+          console.log(factorial(5))
+
+          function productOfArray(arr){
+            //establish a base case
+            if(arr.length === 0){
+              return 1;
+            }
+            //loop through you get to the base case.
+            //multiple 
+            console.log(arr)
+            return arr[0]*productOfArray(arr.slice(1)); 
+          }
+          // [ 1, 4, 3 ]
+          // [ 4, 3 ]
+          // [ 3 ]
+          // 12
+          console.log(productOfArray([1,4,3]))
+
+          function recursiveRange(x){
+            if(x === 0) return 0; 
+            console.log(x)
+            return x + recursiveRange(x-1);
+          }
+          // 5
+          // 4
+          // 3
+          // 2
+          // 1
+          // 15
+          console.log(recursiveRange(5))
