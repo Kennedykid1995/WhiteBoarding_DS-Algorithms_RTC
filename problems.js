@@ -677,3 +677,69 @@ function double(arr){
           // 1
           // 15
           console.log(recursiveRange(5))
+
+//searching algorithmns
+    //objectives
+    //linear search
+    //binary search
+    //naive string searching 
+    //KMP string searching
+
+//linear search
+    //indexOf
+    //includes
+    //find
+    //findIndex
+
+//function accepts an array and value 
+//loop through the array and check if the current array element is equal
+//to the value if it is, return the index at which the element is found
+//if the value is never found, return -1
+function linearSearch(arr, val){
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] === val) return i; 
+    }
+    return -1; 
+}
+linearSearch([1,2,34,5], 5) //returns 3. 
+//Big O linear search
+    //best case O(1) we find immediately
+    //worst case O(n) searching all of the items
+    //average case O(n) as n grows so does the average amount of time it takes
+
+//binary search
+    //much faster
+    //eliminates half of the remaining elements at any given time
+    //elements must be sorted, has to have an order. 
+
+//divide and conquer
+    // /pick a pivot point in the middle, check the right side and the left
+    // this function accepts a sorted array and a value, 
+    //create a left pointer and start of the arr, and a right pointer at the end of the arrat.
+    //while the left pointer comes before the right pointer. 
+    //create a pointer in the middle
+    //if you fin the value yu want, return index
+    //if the value is to small, move the left pointer up
+    //if the value is too large, move the right pointer down    
+    //if you never find the value return -1. 
+    function binarySearch(arr, val){
+        let start = 0; 
+        let end = arr.length - 1; 
+        let middle = Math.floor((start + end) / 2); 
+        while(arr[middle] !== val && start <= end){
+            if(val < arr[middle]){
+                end = middle - 1; //end = 3 //middle = 2 // start = 1
+            }else{
+                start = middle + 1;  //start = 5 //middle = 6 // end = 7
+            }
+        }
+        if(arr[middle] == val){
+            return middle
+        }else{
+            return -1
+        }
+    }
+    binarySearch([1,2,3,4,5,6,7], 3); 
+    //start - 1
+    //end - 7
+    //middle - 4
