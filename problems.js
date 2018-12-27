@@ -743,3 +743,27 @@ linearSearch([1,2,34,5], 5) //returns 3.
     //start - 1
     //end - 7
     //middle - 4
+
+    //Binary search Big O 
+        //worst - O(log n)
+        //best - O(1)
+
+//naive string search
+
+//loop over the longer string
+//loop over the shorter sting 
+//no match break inner loop
+//if there is a match keep going
+//increment count
+//return the count
+    function naiveString(long, short){
+        let count = 0; 
+        for(let i = 0; i < long.length; i++){
+            for(let j = 0; j < short.length; j++){
+                if(short[j] !== long[i + j]) break; 
+                if(j === short.length -1) count++; 
+            }
+        }
+        return count; 
+    }
+    naiveString("lori loled", "lol")
