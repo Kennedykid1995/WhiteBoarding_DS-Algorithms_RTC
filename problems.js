@@ -766,4 +766,82 @@ linearSearch([1,2,34,5], 5) //returns 3.
         }
         return count; 
     }
-    naiveString("lori loled", "lol")
+    naiveString("lori loled", "lol");
+
+
+//sorting algorithms
+//sorting is the process of rearranging the items in a collection, 
+//so that the items are in some kind of order.
+
+
+//Bubble sort
+    //sorting algorithm where the largest values bubble to the top. 
+    //5,1,2,4,3,6
+    //1,2,4,3,5,6
+    //1,2,3,4,5,6
+    //the larger num swaps indexes with the smaller num. 
+
+    //start loop in with a variable called i the end of the array towards the beginning.
+    //start an inner loop with a variable called j from the beginning until i - 1;
+    //if arr[j] is greater than arr[j + 1], swap those two values
+    //return the sorted array
+
+    function bubbleSort(arr){
+        let noSwaps; 
+        for(let i = arr.length; i > 0; i--){
+            noSwaps = true
+            for(let j = 0; j < i - 1; j++){
+                if(arr[j] > arr[j + 1]){
+                    //swap
+                    let temp = arr[j]; 
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp; 
+                    noSwaps = false;
+                }
+            }
+            if(noSwaps) break; 
+        }
+        return arr; 
+    }
+    bubbleSort([2,1,4,5,3,6])
+
+    //bubble sort big O
+    //in general it is O(n^2) cause of the nested loop. 
+    //unless the array is nearly sorted. simplifies down to O(n);
+
+//selection sort
+//similar to bubble but instead of first placing values into sorted position,
+//it places small values into sorted position. 
+
+//[5,3,4,1,2]
+//looks for the minimum value
+//[1,5,3,4,2]
+//[1,2,5,3,4]
+//[1,2,3,5,4]
+//[1,2,3,4,5]
+
+    //store the first element as the smalledt value youve seen so far
+    //compare the item to the next item in the array until you find a smaller number
+    //if a smaller number is found, designate that smaller number to be the 
+    //new minimum and continue until the end of the array
+    //if the minimum us not the value index you initially began with swap the two values
+    //repeat this wuth the next element until the array is sorted. 
+    function selectionSort(arr){
+        for(let i = 0; i < arr.length; i++){
+            let lowest = i; //the index. 
+            for(let j = i + 1; j < arr.length; j++){
+                if( arr[j] < arr[lowest]){
+                    lowest = j; 
+                } 
+            }
+            if(i !== lowest){
+            let temp = arr[i];
+            arr[i] = arr[lowest];
+            arr[lowest] = temp; 
+            }
+        }
+        return arr
+    }
+    selectionSort([10,2,3,1,67,3])
+
+
