@@ -844,4 +844,126 @@ linearSearch([1,2,34,5], 5) //returns 3.
     }
     selectionSort([10,2,3,1,67,3])
 
+//insertion sort
+//builds up the sort by gradually creating a larger left half which is always sorted.
+//[5,3,4,1,2]//finds the three and compars it to the left half
+//[3,5,4,1,2]//moves to front
+//[3,4,5,1,2]//does the same thing with four
+//[1,3,4,5,2]
+//[1,2,3,4,5]//until it is sorted.
+//start by picking the second element in the array
+//now compare the second element with the one before it and swap if necessary
+//continue to the nect element and if it is in the incorrect order.
+//iterate through the sorted portion( the left side) to place the element in the correct place
+//repeat until the array is sorted. 
+    function insertionSort(arr){
+        for(let i = 1; i < arr.length; i++){
+            let currentVal = arr[i]; 
+            for(let j = i - 1; j >= 0 && arr[j] > currentVal; j--){
+                arr[j + 1] = arr[j];  
+            }
+            arr[j+1] = currentVal; 
+        }
+        return arr
+    }
+    insertionSort([5,2,1,9,34,21]); 
 
+    //big o
+    //worse case O(n^2)
+    //best O(1)
+
+//time and space complexity of the three sorting methods
+    //bubble best time O(n) space O(1) worse/average O(n^2)
+    //insertion best O(n) space O(1) worse/average O(n^2)
+    //selection best O(n) space O(1) worse/average O(n^2)
+
+
+//advanced sorting algorithms
+    //merge sort 
+    //splitting up, merging, and sorting. 
+    //works by decomping an array into smaller arrays of 0 or 1 elements, then building
+    //a newly built array. 
+    //[10,2,90,5,6,23,1,2,3]
+    //[10,2,90,5] [6,23,1,2,3] //splits in half anf keeps doing that until arrays are 0 or 1. 
+    
+    //create an empty array that you will return in the end
+    //take a look at the smallest values in each input array
+    //while there are still values we haven't looked at
+    //if the value in the first arrat is smaller than the value in the second
+    //push the value in the first array into the results and move on to the next \
+    //value in the first array.
+    //if the value in the first array is larger than the value in the second array, push
+    //the value in the second array into our results and move on to the next value in the
+    //second array. 
+
+    function twoSorted(arr1, arr2){
+        let results = []; 
+        let i = 0; 
+        let j = 0; 
+        while(i < arr1.length && j < arr2.length){
+            if(arr2[j] > arr[i]){
+                results.push(arr[i])
+                i++; 
+            }else{
+                results.push(arr2[j])
+                j++; 
+            }
+        }
+        //the two while loops insert whatever is left in the arrays into results.
+        while(i < arr1.length){
+            results.push(arr1[i])
+            i++
+        }
+        while(j < arr2.length){
+            results.push(arr2[j]); 
+            j++
+        }
+        return results
+    }
+    twoSorted([1,10,50] [2,14,99,100])
+
+//writing merge sort
+    //uses recursion
+    //break up the array into halves until you gave arrays that are empty or have one element
+    //once you have the smaller arrays sorted, merge those arrays with other sorted arrays
+    //until you are back at the full length of the array. 
+    //once you have the array merged back together return the merged array. 
+    function mergeSort(arr){
+        if(arr.length <= 1) return arr; //base case
+        let mid = Math.floor(arr.length / 2); 
+        let left = mergeSort(arr.slice(0, mid)); 
+        let right = mergeSort(arr.slice(mid)); 
+        return merge(left, right); 
+
+    }
+    mergeSort([12, 24, 76, 73, 72, 1, 9])
+
+    //big O
+    //best case O(n log n) space O(n); 
+
+//Quick Sort
+    //like merge sort, exploits the fact that arrays of 0 or 1 element are always sorted
+    //works by selecting one element called the pivot and finding the index where the pivot
+    //shpuld end up in the sorted  array
+    //once the pivot is positioned appropriately, quick sort can be applied on either side of
+    //the pivot. 
+
+    //pivot helper
+    //picking a pivot
+    //the runtime of quick sort depends in part on how one selects the pivot
+    //ideally, the pivot should be chosen so thta its roughly the median value in the
+    //data set you are sorting 
+    
+    //it will help to accept three arguments: an array, a start index, and an end index
+    //these can default to 0 and the array length minus 1
+    //grab the pivot from the start of the array. 
+    //store the current pivot index in a variable. keep track of where it should end up
+    //loop through the array from the start until the end
+        //if the pivot is greater than the current element, increment 
+        //the pivot index varuable and then swap the current element with the element at
+        //the pivot index.
+    //swap the starting element the pivot with the pivot index
+    //return the pivot index. 
+    
+
+    
