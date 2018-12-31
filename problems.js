@@ -933,7 +933,7 @@ linearSearch([1,2,34,5], 5) //returns 3.
         let mid = Math.floor(arr.length / 2); 
         let left = mergeSort(arr.slice(0, mid)); 
         let right = mergeSort(arr.slice(mid)); 
-        return merge(left, right); 
+        return twoSorted(left, right); 
 
     }
     mergeSort([12, 24, 76, 73, 72, 1, 9])
@@ -964,6 +964,98 @@ linearSearch([1,2,34,5], 5) //returns 3.
         //the pivot index.
     //swap the starting element the pivot with the pivot index
     //return the pivot index. 
-    
+
+    function pivotHelper(arr, start=0, end=arr.length+1){
+        function swap(arr, i, j){
+            let temp = arr[i]; 
+            arr[i] = arr[j]; 
+            arr[j] = temp; 
+        }
+        let pivot = arr[start]; 
+        let swapIndex = start; 
+        for(let i = start + 1; i < arr.length; i++){
+            if(pivot > arr[i]){
+                swapIndex++;
+                swap(arr, swapIndex, i); 
+            }
+        }
+        swap(arr, start, swapIndex); 
+        return swapIndex; 
+    }
+    pivotHelper([4,8,2,3,4,1]);
+//quick sort implementation
+    //pivot helper finished
+    //call the pivot helper on the array
+    //resursively call the pivot helper on the subarray to the left of the index
+    //and the subarray to the right of that index. 
+    //your base case occus when you consider a subarray with less than 2 elements. 
+    function quickSort(arr, left = 0, right = arr.length - 1){
+        if(left < right){
+        let pivotInx = pivotHelper(arr, left, right);
+        //left
+        quickSort(arr, left, pivotInx - 1)  
+        //right
+        quickSort(arr, pivotInx + 1, right); 
+        }
+        return arr; 
+    }
+    quickSort([4,6,9,1,2,5,3]); 
+
+    //sorting algorithms that are not comparing, that are faster;
+    //Radix sort doesn't compare elements. 
+    //is a special sorting algorithm that works on lists of numbers
+    //it never makes comparisons between elements
+    //it exploits the fact that information about size of a number is
+    //encoded in the number of digits
+    //more digits means a bigger number
+
+    //helper functions for this algorithm
+    //radix sort helpers 
+    //getDigit(num, place)- returns athe digit in num at the given
+    //place value. 
+    function getDigit(num, i){
+        return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
+    }
+    //next helper
+    //digitCount
+    function digitCount(num){
+        if(num === 0) return 1; 
+        return Math.floor(Math.log10(Math.abs(num))) + 1; 
+    }
+    //mostDigits
+    function mostDigits(nums){
+        let maxDigits = 0; 
+        for(let i = 0; i < nums.length; i++){
+            maxDigits = Math.max(maxDigits, digitCount(nums[i])); 
+        }
+        return maxDigits; 
+    }
+
+    //Radix Sort
+    //define a function that accepts lists pf numbers
+    //figure out how many digits the largest number has
+    //loop from k = 0 up to this largest number of digits
+    //create buckets for each digit for each digit(0 to 9); 
+    //place each number on the corresponding bucket based on 
+    //its kth digits
+    //replace our existing array with valies in our buckets
+    //starting with 0 and going up to 9
+    //return list at the end.
+
+    function radixSort(nums){
+        let maxDigitCount = mostDigits(nums);
+        for(let k = 0; k < maxDigitCount; k++){
+            let digitBuckets = Array.from({length: 10}, () => []); 
+            for(let i = 0; i < nums.length; i++){
+                let digit = getDigit(nums[i], k)
+                digitBuckets[digit].push(nums[i]); 
+            }
+            nums = [].concat(...digitBuckets); //makes this into the list.
+        }
+    }
+    radixSort([1,43,212,45,32,2,56432,2212])
+
+    //Big O
+    //O(nk) - time /O(n + k) -space
 
     
