@@ -1129,6 +1129,74 @@ linearSearch([1,2,34,5], 5) //returns 3.
                }
                return currentHead; 
            }
+           unshift(val){
+              //should accept a value
+              //create a new node using the value passed to the function
+              //if there is no head property on the list, set the head and tail
+              // to be the newly created node
+              //otherwise set the newly created nodes next property to be the
+              // current head property on the the list. 
+              //set the head property on the list to be that newly created node
+              //increment the length of the list by 1
+              //return the linked list
+            let newNode = new Node(val); 
+            if(!this.head){
+                this.head = newNode; 
+                this.tail = this.head;
+            } else {
+                newNode.next = this.head; 
+                this.head = newNode; 
+            }
+            this.length++;
+            return this; 
+           }
+           get(index){
+               //should accept an index
+               //if the index is less than zero or greater than or equal to the length of the list
+               //return null
+               //loop through the list until you reach the index and return the node at that
+               //specific index
+            if(index < 0 || index > this.length) return null; 
+            let counter = 0; 
+            let current = this.head; 
+            while(counter !== index){
+                current = current.next;
+                counter++;
+            }
+            return current;
+           }
+           set(index, val){
+                //define function that accepts index and value
+                //use the get method to find node
+                //if the node not found return false
+                //if found update value and return true
+                let foundNode = this.get(index);
+                if(foundNode){
+                    foundNode.val = val;
+                    return true; 
+                }
+                return false;
+           }
+           insert(index, val){
+               //if the index is less than zero or greater than the length, return false
+               //if the is the same as the length, push new node to the end of the list
+               //if th eindex is 0, unshift a new node to the start of the list
+               //otherwise, using get method access the node at the index -1
+               //set the next property on the node to be the new node
+               //set the next property on the new node to be the previous nex
+               //increment the length
+               //return true
+               if(index > 0 || index < this.length) return false; //weird number
+               if(index === this.length) return this.push(val); //end
+               if(index === 0)this.unshift(val);//beginning
+               let newNode = new Node(val); 
+               let prev = this.get(index - 1); 
+               let temp = prev.next;
+               prev.next = newNode;
+               newNode = temp; 
+               this.length++;
+               return true;
+           }
        }
     
        let list = new singlyLinkedList(val)
